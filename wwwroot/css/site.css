@@ -1,5 +1,6 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
+    letter-spacing: 1px;
 }
 
 @media (min-width: 768px) {
@@ -15,4 +16,84 @@ html {
 
 body {
   margin-bottom: 60px;
+}
+
+h5 {
+    margin-bottom: 50px;
+}
+
+form ul {
+    list-style-type: none;
+}
+
+ul li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+form select, form label, form input {
+    padding: 5px;
+    margin-right: 10px;
+}
+
+input[type=submit], input[type=reset] {
+    margin-top: 10px;
+    margin-left: 50px;
+    display: inline-block;
+    width: 90px;
+    border-radius: 7px;
+}
+
+input[type=submit] {
+    background-color: rgb(87, 19, 122, 0.8);
+    color: white;
+}
+
+input[type=reset]{
+    background-color: darkgrey;
+}
+
+label {
+    font-size: medium;
+    font-weight: 500;
+}
+
+.result {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+table {
+    text-align: center;
+    border: 2px solid black;
+    border-collapse: collapse;
+}
+
+thead {
+    text-decoration: solid;
+    color: white;
+    text-shadow: 1px 1px 2px black;
+    border-bottom: 2px solid black;
+}
+
+thead th {
+    border: 2px solid black;
+    padding: 10px;
+    background-color: rgb(87, 19, 122, 0.5);
+}
+
+tbody td {
+    border: 2px solid black;
+}
+
+table tr:nth-child(2n+1) {
+    background-color: rgb(87, 19, 122, 0.4);
+}
+
+#errorMessage {
+    color: darkred;
 }

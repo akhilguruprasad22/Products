@@ -1,8 +1,105 @@
-﻿@{
+﻿@model IEnumerable<Product>
+@{
     ViewData["Title"] = "Home Page";
 }
+<div>
+    <h5>Query the database to get required product data.</h5>
+    <form id="productForm" method="post" asp-controller="Home" asp-action="Index">
+        @*TODO: <div asp-validation-summary="All" class="text-danger"></div>*@
+        <ul>
+            <li>
+                <label for="productName">@Html.DisplayNameFor(model => model.ProductName): </label>
+                <input type="text" name="productName" id="productName" placeholder="Enter product's name" />
+            </li>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+            <li>
+                <select name="condition1" id="condition1">
+                    <option value="AND">AND</option>
+                    <option value="OR">OR</option>
+                </select>
+                <label for="size">@Html.DisplayNameFor(model => model.Size): </label>
+                <select name="size" id="size">
+                    <option disabled selected value="d">--Select an option--</option>
+                    <option value="s">Small</option>
+                    <option value="m">Medium</option>
+                    <option value="l">Large</option>
+                </select>
+            </li>
+            
+            <li>
+                <select name="condition2" id="condition2">
+                    <option value="AND">AND</option>
+                    <option value="OR">OR</option>
+                </select>
+                <label for="price">@Html.DisplayNameFor(model => model.Price): </label>
+                <select name="price" id="price">
+                    <option disabled selected value="0">--Select an option--</option>
+                    <option value="100">100</option>
+                    <option value="275">275</option>
+                    <option value="500">500</option>
+                </select>
+            </li>
+            
+            <li>
+                <select name="condition3" id="condition3">
+                    <option value="AND">AND</option>
+                    <option value="OR">OR</option>
+                </select>
+                <label for="mfgdate">@Html.DisplayNameFor(model => model.MfgDate): </label>
+                <input type="date" name="mfgDate" id="mfgDate" />
+            </li>
+            
+            <li>
+                <select name="condition4" id="condition4">
+                    <option value="AND">AND</option>
+                    <option value="OR">OR</option>
+                </select>
+                <label for="category">@Html.DisplayNameFor(model => model.Category): </label>
+                <select name="category" id="category">
+                    <option disabled selected value="default">--Select an option--</option>
+                    <option value="standard">Standard</option>
+                    <option value="premium">Premium</option>
+                    <option value="economy">Economy</option>
+                </select>
+            </li>
+            
+            <li>
+                <input type="submit" value="Submit" />
+                <input type="reset" value="Reset"/>
+            </li>
+        </ul>
+    </form>
 </div>
+
+@if (Model != null && Model.Count()>0)
+{
+    <div class="result">
+        <table>
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.ProductId)</th>
+                    <th>@Html.DisplayNameFor(model => model.ProductName)</th>
+                    <th>@Html.DisplayNameFor(model => model.Size)</th>
+                    <th>@Html.DisplayNameFor(model => model.Price)</th>
+                    <th>@Html.DisplayNameFor(model => model.MfgDate)</th>
+                    <th>@Html.DisplayNameFor(model => model.Category)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Product product in Model)
+                {
+                    <tr>
+                        <td>@product.ProductId</td>
+                        <td>@product.ProductName</td>
+                        <td>@product.Size?.ToUpper()</td>
+                        <td>@product.Price</td>
+                        <td>@product.MfgDate.ToShortDateString()</td>
+                        <td>@product.Category</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+

@@ -1,7 +1,11 @@
+using Microsoft.EntityFrameworkCore;
+using Products.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<ProductsContext>(options => options.UseMySQL(builder.Configuration.GetConnectionString("ProductContext")));
 
 var app = builder.Build();
 
